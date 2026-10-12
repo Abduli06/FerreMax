@@ -1,0 +1,23 @@
+@startuml
+autonumber
+skinparam backgroundColor white
+skinparam ParticipantBackgroundColor #FFF2CC
+skinparam ParticipantBorderColor #D6B656
+skinparam SequenceLifeLineBorderColor #666666
+
+participant Cliente
+participant Vendedor
+participant Sistema
+participant Gerente
+
+Cliente -> Vendedor : Presenta su cotización
+Vendedor -> Sistema : Ingresa el folio de la cotización
+Sistema -> Sistema : Revisa la fecha de vigencia
+Sistema --> Vendedor : Alerta: cotización vencida (bloqueo)
+Vendedor --> Cliente : Le informa que ya venció
+Cliente -> Vendedor : Pide una excepción
+Vendedor -> Gerente : Solicita autorización
+Gerente -> Sistema : Autoriza con sus credenciales
+Sistema --> Vendedor : Desbloquea la cotización
+Vendedor --> Cliente : Continúa la venta con la cotización
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+autonumber
+skinparam backgroundColor white
+skinparam ParticipantBackgroundColor #FFF2CC
+skinparam ParticipantBorderColor #D6B656
+skinparam SequenceLifeLineBorderColor #666666
+
+participant Cliente
+participant Vendedor
+participant Sistema
+participant Inventario
+
+Cliente -> Vendedor : Solicita un producto
+Vendedor -> Sistema : Consulta disponibilidad (SKU)
+Sistema -> Inventario : Verifica existencia
+Inventario --> Sistema : Existencia confirmada
+Sistema --> Vendedor : Muestra precio y descuento
+Vendedor --> Cliente : Informa el total
+Cliente -> Vendedor : Paga
+Vendedor -> Sistema : Registra la venta
+Sistema -> Inventario : Descuenta del inventario
+Sistema --> Vendedor : Genera el ticket
+Vendedor --> Cliente : Entrega ticket y producto
+@enduml
